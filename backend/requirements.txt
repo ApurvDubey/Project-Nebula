@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+aiosqlite
+python-multipart
+openai
+pydantic-settings
+mammoth
+langgraph
+python-dotenv
+beautifulsoup4
+markdownify
+httpx

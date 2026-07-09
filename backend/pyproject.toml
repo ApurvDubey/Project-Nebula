@@ -1,0 +1,4 @@
+[tool.ruff.lint.per-file-ignores]
+"app/pageindex_engine/page_index*.py" = ["F403", "F405"]
+"app/pageindex_engine/utils.py" = ["E402"]
+"app/pageindex_engine/__init__.py" = ["F401"]
