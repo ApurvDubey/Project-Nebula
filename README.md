@@ -1,22 +1,24 @@
 # Nebula
 
-Nebula is a self-hostable, open-source alternative to NotebookLM. 
-It differentiates itself from standard Vector-RAG clones by using **PageIndex** (LLM-driven Tree Navigation) for deep contextual reasoning without chunking artifacts.
+Nebula is a self-hosted alternative to NotebookLM. Upload your PDFs, docs, and web pages, and ask questions grounded in what you actually gave it.
 
-This project is licensed under the AGPL-3.0 License. See the [LICENSE](./LICENSE) file for more details.
+Most RAG tools chop documents into chunks and search them by vector similarity. Nebula builds a hierarchical tree of each document instead, called PageIndex, and lets an LLM agent navigate that tree the way you'd flip through a table of contents to find an answer.
 
-## Features
+Licensed under AGPL-3.0. See [LICENSE](./LICENSE).
 
-### V1 Core
-- **File Ingestion**: Upload PDF, DOCX, TXT, and Markdown files.
-- **PageIndex Generation**: Hierarchical document tree generation for deep understanding.
-- **LangGraph Agent**: Advanced `plan -> fetch -> write` multi-step retrieval pipeline for accurate, grounded Q&A.
-- **100% Offline Capability**: Connects to local Ollama out of the box for maximum privacy.
+## What it does
 
-### V2 Additions
-- **🌐 Live Web Scraping**: Ingest articles, blog posts, and wikis directly via URL. Features robust SSRF (Server-Side Request Forgery) protection, redirect-blocking, and DNS rebinding mitigations.
-- **🧠 Interactive Knowledge Graph**: Visualize the PageIndex tree of your documents using a fully interactive React Flow graph interface.
-- **Enterprise-Grade Stability**: Resilient SQLite transaction handling for concurrent LLM usage and robust exception handling.
+Upload PDF, DOCX, TXT, or Markdown files, or paste in a URL and Nebula scrapes the page for you. Each document gets turned into a PageIndex tree. Ask a question, and a LangGraph agent plans which parts of the tree to check, fetches those sections, and writes an answer with citations back to the source.
+
+Point it at a local Ollama model and everything runs offline. Point it at OpenAI or another provider instead if that's what you'd rather use.
+
+There's also a knowledge graph view: click through a document's PageIndex tree directly in a React Flow canvas.
+
+## Under the hood
+
+- FastAPI backend, Next.js frontend
+- SQLite for storage, WAL mode, so concurrent chat sessions don't lock each other out
+- URL ingestion checks the target isn't a private or internal address before fetching anything
 
 ## Quickstart (Docker)
 
@@ -24,18 +26,20 @@ This project is licensed under the AGPL-3.0 License. See the [LICENSE](./LICENSE
 docker-compose up -d --build
 ```
 
-Navigate to `http://localhost:3000` to start chatting with your documents.
+Open `http://localhost:3000` and start chatting with your documents.
 
-## Local Development (Without Docker)
+## Local development (without Docker)
 
 ### Backend (FastAPI)
 1. `cd backend`
 2. `pip install -r requirements.txt`
 3. `uvicorn app.main:app --reload`
-*(Server runs on port 8000)*
+
+Runs on port 8000.
 
 ### Frontend (Next.js)
 1. `cd frontend`
 2. `npm install`
 3. `npm run dev`
-*(App runs on port 3000)*
+
+Runs on port 3000.
