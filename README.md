@@ -10,6 +10,8 @@ Licensed under AGPL-3.0. See [LICENSE](./LICENSE).
 
 Upload PDF, DOCX, TXT, or Markdown files, or paste in a URL and Nebula scrapes the page for you. Each document gets turned into a PageIndex tree. Ask a question, and a LangGraph agent plans which parts of the tree to check, fetches those sections, and writes an answer with citations back to the source.
 
+Generate a two-host podcast audio overview of your notebook context using Microsoft's free Edge TTS engine.
+
 Point it at a local Ollama model and everything runs offline. Point it at OpenAI or another provider instead if that's what you'd rather use.
 
 There's also a knowledge graph view: click through a document's PageIndex tree directly in a React Flow canvas.
@@ -19,6 +21,7 @@ There's also a knowledge graph view: click through a document's PageIndex tree d
 - FastAPI backend, Next.js frontend
 - SQLite for storage, WAL mode, so concurrent chat sessions don't lock each other out
 - URL ingestion checks the target isn't a private or internal address before fetching anything
+- Tauri desktop app shell boilerplate with sidecar lifecycle management to launch/close the compiled FastAPI binary alongside the UI
 
 ## Quickstart (Docker)
 
@@ -43,3 +46,9 @@ Runs on port 8000.
 3. `npm run dev`
 
 Runs on port 3000.
+
+### Desktop App (Tauri)
+1. In `backend`: Build the backend binary: `python build_backend.py`
+2. Move/rename the compiled binary to match Tauri's expected sidecar path: `backend/dist/nebula-backend/nebula-backend` (or `nebula-backend.exe` on Windows)
+3. In `frontend`: Run `npm run tauri dev`
+
