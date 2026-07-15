@@ -142,4 +142,17 @@ export class NebulaAPI {
     if (!res.ok) throw new Error("Failed to send message");
     return res.json();
   }
+
+  // Podcast
+  static async generatePodcast(notebookId: string): Promise<{status: string}> {
+    const res = await fetch(`${BASE_URL}/notebooks/${notebookId}/podcast/`, {
+      method: "POST"
+    });
+    if (!res.ok) throw new Error("Failed to generate podcast");
+    return res.json();
+  }
+
+  static getPodcastUrl(notebookId: string): string {
+    return `${BASE_URL}/notebooks/${notebookId}/podcast/`;
+  }
 }

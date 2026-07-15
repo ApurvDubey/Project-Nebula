@@ -2,3 +2,8 @@
 "app/pageindex_engine/page_index*.py" = ["F403", "F405"]
 "app/pageindex_engine/utils.py" = ["E402"]
 "app/pageindex_engine/__init__.py" = ["F401"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=app --cov-report=term-missing"

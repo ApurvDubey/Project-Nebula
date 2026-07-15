@@ -10,3 +10,16 @@ python-dotenv
 beautifulsoup4
 markdownify
 httpx
+edge-tts
+pydub
+tiktoken
+PyYAML
+PyMuPDF
+
+# Testing
+pytest
+pytest-asyncio
+pytest-cov
+
+# Python 3.13 compatibility for pydub
+audioop-lts; python_version >= '3.13'

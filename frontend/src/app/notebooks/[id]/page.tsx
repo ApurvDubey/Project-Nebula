@@ -7,6 +7,7 @@ import { NebulaAPI, Notebook, Document } from '@/lib/api';
 import UploadDropzone from '@/components/UploadDropzone';
 import ChatPanel from '@/components/ChatPanel';
 import DocumentGraph from '@/components/DocumentGraph';
+import PodcastPanel from '@/components/PodcastPanel';
 import { useParams } from 'next/navigation';
 
 export default function NotebookView() {
@@ -121,6 +122,10 @@ export default function NotebookView() {
                 ))
               )}
             </div>
+          </div>
+
+          <div className="shrink-0">
+            <PodcastPanel notebookId={notebookId} />
           </div>
         </div>
 

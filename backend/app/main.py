@@ -48,10 +48,12 @@ def create_app() -> FastAPI:
     from app.api.notebooks import router as notebooks_router
     from app.api.documents import router as documents_router
     from app.api.chat import router as chat_router
+    from app.api.podcast import router as podcast_router
 
     app.include_router(notebooks_router)
     app.include_router(documents_router)
     app.include_router(chat_router)
+    app.include_router(podcast_router)
 
     # ── Health check ─────────────────────────────────────────────────
     @app.get("/api/health", tags=["health"])
